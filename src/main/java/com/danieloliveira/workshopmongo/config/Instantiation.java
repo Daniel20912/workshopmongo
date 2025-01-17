@@ -15,7 +15,7 @@ public class Instantiation implements CommandLineRunner {
     private UserRepository userRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args){
         // deleta e instancia as collections sempre que o programa for executado novamente
 
         userRepository.deleteAll();

@@ -1,6 +1,7 @@
 package com.danieloliveira.workshopmongo.resources;
 
 import com.danieloliveira.workshopmongo.domain.User;
+import com.danieloliveira.workshopmongo.dto.UserDTO;
 import com.danieloliveira.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/users") // especifica o caminho do endpoint
@@ -21,8 +23,9 @@ public class UserResource {
 
     @GetMapping
     // ResponseEntity encapsula uma estrutura necessária para retornar respostas http com cabeçalhos e códigos de erro
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<UserDTO>> findAll() {
         List<User> list = new ArrayList<>(userService.findAll());
-        return ResponseEntity.ok().body(list); // o ok significa que a resposta foi um sucesso
+        List<UserDTO> listDto = list.stream().map(UserDTO::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto); // o ok significa que a resposta foi um sucesso
     }
 }
