@@ -48,5 +48,13 @@ public class UserResource {
         userService.delete(id);
         return ResponseEntity.noContent().build(); // em respostas que não retornam nada, deve se usar o noContent que retorna o código 204
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@RequestBody UserDTO userDTO, @PathVariable String id) {
+        User obj = userService.fromDTO(userDTO);
+        obj.setId(id);
+        userService.update(obj);
+        return ResponseEntity.noContent().build();
+    }
 }
 
