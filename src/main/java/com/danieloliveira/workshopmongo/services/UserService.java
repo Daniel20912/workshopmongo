@@ -29,6 +29,11 @@ public class UserService {
         return userRepository.insert(obj);
     }
 
+    public void delete(String id) {
+        findById(id); // se ele não achar o objeto pelo id, a excessão já será lançada no metodo findById
+        userRepository.deleteById(id);
+    }
+
     // cria um user a partir de um DTO
     public User fromDTO(UserDTO objDto) {
         return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
