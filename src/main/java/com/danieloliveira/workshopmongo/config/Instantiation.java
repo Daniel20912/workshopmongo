@@ -16,15 +16,14 @@ import java.util.Arrays;
 @Configuration // essa classe é executada toda vez que o projeto rodar
 public class Instantiation implements CommandLineRunner {
 
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PostRepository postRepository;
 
     @Override
     public void run(String... args) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         // deleta e instancia as collections sempre que o programa for executado novamente
 
